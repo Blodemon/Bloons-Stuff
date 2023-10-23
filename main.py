@@ -15,15 +15,23 @@ myconfig =r"--psm 10 --oem 3 "
 #myscreen.show()
 #Money reader
 def get_money():
-    if selectedlr==0:
-        screenshot = pyautogui.screenshot(region=(350, 15, 270, 55))
-    else:
-        screenshot = pyautogui.screenshot(region=(730, 15, 270, 55))
-    screenshot.save('screens.png')
-    myscreen = Image.open('screens.png')
-    money=pytesseract.image_to_string(myscreen, config=myconfig)
-    print(int(re.sub('[^0-9]+', '', money)))
-    return int(re.sub('[^0-9]+', '', money))
+    try:
+        if selectedlr()==1:
+            screenshot = pyautogui.screenshot(region=(350, 15, 220, 55))
+            screenshot.save('screens.png')
+        else:
+            if selectedlr()==0:
+                screenshot = pyautogui.screenshot(region=(735, 15, 220, 55))
+                screenshot.save('screens.png')
+            else:
+                return
+        myscreen = Image.open('screens.png')
+        money=pytesseract.image_to_string(myscreen, config=myconfig)
+        print(re.sub('[^\d+]+',"", money))
+        print(int(re.sub('[^\d+]+',"", money)))
+        return int(re.sub('[^\d+]+',"", money))
+    except:
+        return 0
 
 #Round reader
 
@@ -37,7 +45,7 @@ m_to_c = ['q', 'w', 'e', 'r', 't', 'z', 'y', 'x', 'c', 'v', 'b', 'n', 'm', 'a', 
 
 def print_mouse_position():
     for _ in range(10):
-        wait(3)
+        wait(5)
         # Get the current mouse position
         mouse_x, mouse_y = pyautogui.position()
         
@@ -57,20 +65,24 @@ def place(x, y, Monkey):
     placed.append([x, y])
     print(f"Placed {Monkey} as Nr.: {len(placed)}")
 
-def check_cost(m):
+def check_cost(test):
     i=0
     affordable=0
-    while i<30:
+    why=0
+    
+    while i<20:
         wait(0.1)
-        if get_money()>= costs[m_to_c.index(m)]:
+        why=test
+        if get_money()>= costs[m_to_c.index(why)]:
             affordable+=1
-    if affordable>=15:
+        i+=1
+    if affordable>=10:
         return bool(True)
 
 def place_cost(x, y, Monkey):
     while True:
         wait(0.1)
-        if check_cost():
+        if check_cost(Monkey):
                 pyautogui.moveTo(x, y)
                 keyboard.press(Monkey)
                 wait(0.1)
@@ -132,6 +144,22 @@ def replace_trap(x, y):
     wait(0.5)
     pyautogui.moveTo(x, y)
     pyautogui.click()
+    
+def pymoveclick(x, y):
+    pyautogui.moveTo(x, y)
+    pyautogui.click()
+    
+def sell_truck():
+    wait(0.1)
+    pymoveclick(900,700)
+    pymoveclick(1010, 760)
+    pymoveclick(891, 691)
+    pymoveclick(931, 619)
+    
+def darling_lock():
+    pyautogui.moveTo(456, 546)
+    keyboard.press(Key.tab)
+    keyboard.release(Key.tab)
 
 
 def upgrade(index):
@@ -166,15 +194,10 @@ def heli_Sanctuary():
 
 def infernal():
     place(1580, 520, 'y')
-    upgrade_time(1, 2)
-    print(pyautogui.pixel(100, 70))
-    print(pyautogui.pixel(110, 70))
-    print(pyautogui.pixel(90, 70))
-    
+    upgrade_time(1, 2) 
     upgrade_time(2, 1)
     start()
     upgrade_time(2, 3)
-    #wait(20)
     place_cost(1580, 620, 'f')
     upgrade_time(0, 4)
     upgrade_time(2, 1)
@@ -183,6 +206,26 @@ def infernal():
     select_monkey(1)
     upgrade_time(0, 1)
 
+def flooded_valleey():
+    place(1182, 487, 'u')
+    place(1049, 754, 'c')
+    start()
+    upgrade_time(2, 2)
+    upgrade_time(1, 2)
+    place_cost(1020, 170, 'c')
+    upgrade_time(1, 2)
+    upgrade_time(0,4)
+    select_monkey(1)
+    upgrade_time(1, 2)
+    place_cost(916, 86, 'x')
+    upgrade_time(0, 3)
+    select_monkey(1)
+    upgrade_time(1, 1)
+    select_monkey(2)
+    upgrade_time(0, 1)
+    place_cost(1306, 500, 'x')
+    upgrade_time(0, 2)
+    upgrade_time(1, 5)
 
 def quad():
     place(1260, 560, 'u')
@@ -246,11 +289,61 @@ def muddy_puddles():
     upgrade_time(0, 2)
     upgrade_time(1, 5)
 
+def bloody_puddles():
+    sell_truck()
+    place(1055, 435, 'q')
+    start()
+    place_cost(808, 687, 'y')
+    upgrade_time(1, 2) 
+    upgrade_time(2, 3)
+    place_cost(723, 561, 'y')
+    upgrade_time(0, 1)
+    upgrade_time(2, 2)
+    place_cost(929, 789, 'f')
+    upgrade_time(0, 4)
+    upgrade_time(2, 1)
+    select_monkey(1)
+    upgrade_time(2, 2)
+    place_cost(887, 627, 'k')
+    upgrade_time(0, 2)
+    upgrade_time(1, 3)
+    place_cost(666, 663, 'x')
+    upgrade_time(0, 2)
+    upgrade_time(1, 5)
+    place_cost(1008, 543, 'j')
+    upgrade_time(0, 2)
+    upgrade_time(1, 5)
+    
+def dark_castle():
+    place(546, 472, 'z')
+    place(1459, 567, 'm')
+    start()
+    place(1570, 562, 'j')
+    place(1542, 465, 'k')
+    place(1563, 686, 'f')
+    place(1462, 371, 'y')
+    
 def selectedlr():
-    if pyautogui.pixel(390, 900) == (255, 119, 0):
+    pixel_color = pyautogui.pixel(390, 900)
+    check = (pixel_color == (255, 119, 0)or
+        pixel_color == (256, 119, 0)or
+        pixel_color == (255, 120, 0)or
+        pixel_color == (256, 120, 0)or
+        pixel_color == (255, 118, 0)or
+        pixel_color == (256, 118, 0))
+    if check:
         return 0
-    if pyautogui.pixel(1610, 900) == (255, 119, 0):
-        return 1
+    else:
+        pixel_color = pyautogui.pixel(1610, 900)
+        check = (pixel_color == (255, 119, 0)or
+            pixel_color == (256, 119, 0)or
+            pixel_color == (255, 120, 0)or
+            pixel_color == (256, 120, 0)or
+            pixel_color == (255, 118, 0)or
+            pixel_color == (256, 118, 0))
+        if check:
+            return 1
+    return 1
 
 
 def selected(index):
@@ -261,7 +354,7 @@ def selected(index):
         pixel_color == (256, 120, 0)or
         pixel_color == (255, 118, 0)or
         pixel_color == (256, 118, 0))
-    if check and pyautogui.pixel(100, 70) == (111, 21, 221) and index == 0:
+    if (check or pyautogui.pixel(85, 70) == (111, 21, 221)) and index == 0:
         return bool(True)
     pixel_color = pyautogui.pixel(1610, 900)
     check = (pixel_color == (255, 119, 0)or
@@ -270,7 +363,7 @@ def selected(index):
         pixel_color == (256, 120, 0)or
         pixel_color == (255, 118, 0)or
         pixel_color == (256, 118, 0))
-    if check and index == 1:
+    if (check or pyautogui.pixel(1340, 70) == (111, 21, 221)) and index == 1:
         return bool(True)
 
 
@@ -320,11 +413,16 @@ def useless():
 
 time.sleep(2)
 
-# useless()
+#useless()
+#print_mouse_position()
+#print(get_money())
+#sell_truck()
 
-# monkeymeddow()
+
 #infernal()
-heli_Sanctuary()
+#heli_Sanctuary()
 #quad()
 #muddy_puddles()
-#get_money()
+#flooded_valleey()
+#bloody_puddles()
+dark_castle()
