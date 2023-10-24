@@ -318,6 +318,7 @@ def dark_castle():
     place(546, 472, 'z')
     place(1459, 567, 'm')
     start()
+    #place_cost()
     place(1570, 562, 'j')
     place(1542, 465, 'k')
     place(1563, 686, 'f')
@@ -414,7 +415,7 @@ def useless():
 time.sleep(2)
 
 #useless()
-#print_mouse_position()
+print_mouse_position()
 #print(get_money())
 #sell_truck()
 
@@ -425,4 +426,4 @@ time.sleep(2)
 #muddy_puddles()
 #flooded_valleey()
 #bloody_puddles()
-dark_castle()
+#dark_castle()

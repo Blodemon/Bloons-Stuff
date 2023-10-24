@@ -1,0 +1,16 @@
+Remapping der Maps
+pixelcheck auf einheitliche pixel setzen
+main aufspalten in ausführen der Maps und code
+
+Helden::
+    go in hero menu(80, 56)
+    herores:
+    (120+150, 200+200)
+    select(1112, 619)
+    exit(80, 56)
+
+Hardmode start::
+    Hard(1290, 410)
+    Standart(654, 600)
+    overwrite safe(1128, 718)
+
