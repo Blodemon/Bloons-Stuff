@@ -9,8 +9,4 @@ Helden::
     select(1112, 619)
     exit(80, 56)
 
-Hardmode start::
-    Hard(1290, 410)
-    Standart(654, 600)
-    overwrite safe(1128, 718)
 
