@@ -138,10 +138,10 @@ def infernal():
     fu.upgrade_time(0, 1)
 
 def bloody_puddles():
-    #fu.wait(1)
-    #fu.select_hero(6)
-    #fu.wait(1)
-    #fu.select_map(6)
+    fu.wait(1)
+    fu.select_hero(6)
+    fu.wait(1)
+    fu.select_map(6)
     fu.wait(2)
     fu.place(1580, 234, 'u')
     fu.place(495, 675, 'x')

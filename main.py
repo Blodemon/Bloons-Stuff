@@ -10,6 +10,7 @@ import cv2
 import functions as fu
 import maps
 import customtkinter
+import bonus_image
 
 
 customtkinter.set_appearance_mode("dark")
@@ -48,6 +49,7 @@ button_ouch = customtkinter.CTkButton(master=frame, text="#Ouch", command=maps.o
 button_ouch.pack(pady=12, padx=10)
 #min_button = customtkinter.CTkButton(master=frame, text="Min", command = lambda: root.wm_state("iconic")).pack(pady=12, padx=10)
 button_positions = customtkinter.CTkButton(master=frame, text="pos", command=fu.print_mouse_position).pack(pady=12, padx=10)
+button_auto = customtkinter.CTkButton(master=frame, text="pos", command=fu.auto_select).pack(pady=12, padx=10)
 root.mainloop()
 
 # (255, 119, 0)

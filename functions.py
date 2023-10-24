@@ -7,6 +7,8 @@ import pytesseract
 from PIL import Image
 import PIL.Image
 import cv2
+import bonus_image
+import maps
 
 
 myconfig =r"--psm 10 --oem 3 "
@@ -32,7 +34,8 @@ def get_money():
         return int(re.sub('[^\d+]+',"", money))
     except:
         return 0
-
+def auto_select():
+    select_map_local(bonus_image.go())
 #Round reader
 def select_map(index):
     if index==1:#dd
@@ -47,8 +50,8 @@ def select_map(index):
         pymoveclick(900, 500)
     if index==6:#bloody
         pymoveclick(1300, 500)
-    if index >=7:
-        pymoveclick(1300, 1000)
+    #if index >=7:
+    #    pymoveclick(1300, 1000)
     if index==7:#workshop
         pymoveclick(500, 250)
     if index==8:#quad
@@ -61,6 +64,32 @@ def select_map(index):
         pymoveclick(900, 500)
     wait(1)
     start_mode()
+    
+def select_map_local(index):
+    if index==1:#dd
+        maps.dark_dungons()
+    if index==2:#sanctuary
+        maps.heli_Sanctuary()
+    if index==3:#ravine
+        maps.ravine()
+    if index==4:#flooded valley
+        maps.flooded_valleey()
+    if index==5:#infernal
+        maps.infernal()
+    if index==6:#bloody
+        maps.bloody_puddles()
+    #if index >=7:
+    #    pymoveclick(1300, 1000)
+    if index==7:#workshop
+        maps.workshop()
+    if index==8:#quad
+        maps.quad()
+    if index==9:#dc
+        maps.dark_castle()
+    if index==10:#muddy
+        maps.muddy_puddles()
+    if index==11:#ouch
+        maps.ouch()
         
 def select_hero(index):
     pymoveclick(100, 1020)
