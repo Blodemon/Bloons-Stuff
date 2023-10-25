@@ -1,12 +1,5 @@
-Remapping der Maps
-pixelcheck auf einheitliche pixel setzen
-main aufspalten in ausführen der Maps und code
-
-Helden::
-    go in hero menu(80, 56)
-    herores:
-    (120+150, 200+200)
-    select(1112, 619)
-    exit(80, 56)
+mehrere maps nacheinander möglich machen
+zeit vor place erhöhen
+pytesseract get money bessere überprüfung
 
 
