@@ -1,6 +1,5 @@
-mehrere maps nacheinander möglich machen
-zeit vor place erhöhen
-pytesseract get money bessere überprüfung
-dark castle place zu place_cost ändern
+mehrere maps nacheinander möglich machen?
+
+
 
 

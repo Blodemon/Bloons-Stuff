@@ -11,33 +11,45 @@ import bonus_image
 import maps
 
 
-myconfig =r"--psm 10 --oem 3 "
+autoplay=True
+games_played = 0
+myconfig =r"--psm 8 --oem 3 "
     
 #Image reader
 #myscreen.show()
 #Money reader
+def start_autopaly():
+    auto_select()
 def get_money():
     try:
         if selectedlr()==1:
-            screenshot = pyautogui.screenshot(region=(350, 15, 220, 55))
+            screenshot = pyautogui.screenshot(region=(368, 24, 130, 40))
             screenshot.save('screens.png')
         else:
             if selectedlr()==0:
-                screenshot = pyautogui.screenshot(region=(735, 15, 220, 55))
+                screenshot = pyautogui.screenshot(region=(758, 24, 130, 40))
                 screenshot.save('screens.png')
             else:
                 return
         myscreen = Image.open('screens.png')
         money=pytesseract.image_to_string(myscreen, config=myconfig)
-        print(re.sub('[^\d+]+',"", money))
-        print(int(re.sub('[^\d+]+',"", money)))
+        #print(re.sub('[^\d+]+',"", money))
+        #print(int(re.sub('[^\d+]+',"", money)))
         return int(re.sub('[^\d+]+',"", money))
     except:
         return 0
+    
+def print_money():
+    print(get_money())
+    
 def auto_select():
     select_map_local(bonus_image.go())
-#Round reader
+    
 def select_map(index):
+    global placed
+    placed = []
+    global games_played
+    games_played += 1
     if index==1:#dd
         pymoveclick(500, 250)
     if index==2:#sanctuary
@@ -136,10 +148,12 @@ def start_mode():
     pymoveclick(1128, 718) 
 
 keyboard = Controller()
-placed = []
+placed =[[100, 110], [100,10]]
 costs = [215, 300, 565, 300, 540, 245, 360, 335, 515, 820, 1640, 770, 820, 405, 2700, 540, 595, 430, 1325, 1080, 1270, 430, 270]
 
 m_to_c = ['q', 'w', 'e', 'r', 't', 'z', 'y', 'x', 'c', 'v', 'b', 'n', 'm', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'i']
+
+
 
 def print_mouse_position():
     for _ in range(1):
@@ -442,3 +456,49 @@ def setstrong():
     keyboard.press(Key.tab)
     wait(0.1)
     keyboard.release(Key.tab)
+    
+def collect_rewards():
+    if bonus_image.get_reward():
+        wait(0.5)
+        pymoveclick(100, 100)
+        wait(0.5)
+        
+def take_screenshot():
+    temp = pyautogui.screenshot(region=(700, 130, 500, 100))
+    temp.save('TEMP.png')
+    
+def finish_map():
+    while autoplay:  
+        if bonus_image.get_victory():
+            pymoveclick(960, 900)
+            wait(0.5)
+            pymoveclick(717, 851)
+            wait(5)
+            if bonus_image.get_reward(): #reward
+                pymoveclick(962, 683)
+                wait(1.5)
+                for _ in range(10):
+                    pymoveclick(550, 550)
+                    pymoveclick(650, 550)
+                    pymoveclick(750, 550)
+                    pymoveclick(850, 550)
+                    pymoveclick(950, 550)
+                    pymoveclick(1050, 550)
+                    pymoveclick(1150, 550)
+                    pymoveclick(1250, 550)
+                    pymoveclick(1350, 550)    
+                wait(0.5) 
+                pymoveclick(963, 998) 
+                wait(0.5)
+                pymoveclick(80, 60)
+            wait(2)
+            pymoveclick(833, 941)
+            wait(1)
+            pymoveclick(1339, 982)
+            if games_played <= 3: 
+                auto_select()
+            else: 
+                return
+        wait(5)
+    
+        

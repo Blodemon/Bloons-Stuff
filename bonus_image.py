@@ -20,6 +20,8 @@ dc=(1220, 130, 420, 300)
 mud=(360, 450, 420, 300)
 ouc=(790, 450, 420, 300)
 
+
+    
 #xddd= pyautogui.screenshot(region=ouc)
 #xddd.show()
 def reward():
@@ -77,3 +79,11 @@ def go():
                         return 11
                     else:
                         print("NO")
+
+def get_reward():
+    if pyautogui.locateOnScreen('reward.png', confidence=0.9) != None:
+        return True
+    
+def get_victory():
+    if pyautogui.locateOnScreen('victory.png', confidence=0.9) != None:
+        return True

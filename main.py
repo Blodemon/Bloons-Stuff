@@ -13,11 +13,13 @@ import customtkinter
 import bonus_image
 
 
+
+
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("dark-blue")
 
 root = customtkinter.CTk()
-root.geometry("250x850")
+root.geometry("250x950")
 
 frame = customtkinter.CTkFrame(master=root)
 frame.pack(pady=20, padx=20, fill="both", expand=True)
@@ -47,33 +49,12 @@ button_muddy = customtkinter.CTkButton(master=frame, text="Muddy Puddles", comma
 button_muddy.pack(pady=12, padx=10)
 button_ouch = customtkinter.CTkButton(master=frame, text="#Ouch", command=maps.ouch)
 button_ouch.pack(pady=12, padx=10)
-#min_button = customtkinter.CTkButton(master=frame, text="Min", command = lambda: root.wm_state("iconic")).pack(pady=12, padx=10)
+
+Auoplay = customtkinter.CTkLabel(master=frame, text="Autoplay", font=('arial',25)).pack(pady=12, padx=10)
+
 button_positions = customtkinter.CTkButton(master=frame, text="pos", command=fu.print_mouse_position).pack(pady=12, padx=10)
-button_auto = customtkinter.CTkButton(master=frame, text="pos", command=fu.auto_select).pack(pady=12, padx=10)
+button_auto = customtkinter.CTkButton(master=frame, text="auto", command=fu.start_autopaly).pack(pady=12, padx=10)
+button_money = customtkinter.CTkButton(master=frame, text="money", command=fu.print_money).pack(pady=12, padx=10)
+button_screen = customtkinter.CTkButton(master=frame, text="screenshot", command=fu.take_screenshot).pack(pady=12, padx=10)
+
 root.mainloop()
-
-# (255, 119, 0)
-# (39, 166, 0)
-# (39, 167, 0)
-# (39, 167, 0)
-# (255, 119, 0)
-# (40, 167, 0)y
-# (40, 167, 0)
-# (39, 167, 0)
-
-#time.sleep(2)
-
-#useless()
-#fu.print_mouse_position()
-#print(get_money())
-#sell_truck()
-#fu.select_map(4)
-#fu.select_hero(1)
-
-#infernal()
-#heli_Sanctuary()
-#quad()
-#muddy_puddles()
-#flooded_valleey()
-#bloody_puddles()
-#dark_castle()
