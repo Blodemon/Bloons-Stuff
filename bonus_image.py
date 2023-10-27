@@ -32,6 +32,7 @@ def reward():
         print("NO")
         time.sleep(1)
 def go(): 
+    time.sleep(2)
     if pyautogui.locateOnScreen('bonus.png', region=dd, confidence=0.8) != None:
         return 1
     else:

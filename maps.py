@@ -152,7 +152,7 @@ def bloody_puddles():
     fu.upgrade_time(0, 1)
     fu.start()
     fu.place_cost(1190, 194, 'x')
-    fu.wait(10)
+    fu.wait(15)
     fu.sell_truck()
     fu.place_cost(796, 674, 'y')
     fu.upgrade_time(1, 2)

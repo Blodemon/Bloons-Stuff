@@ -14,7 +14,6 @@ import bonus_image
 
 
 
-
 customtkinter.set_appearance_mode("dark")
 customtkinter.set_default_color_theme("dark-blue")
 
@@ -51,10 +50,13 @@ button_ouch = customtkinter.CTkButton(master=frame, text="#Ouch", command=maps.o
 button_ouch.pack(pady=12, padx=10)
 
 Auoplay = customtkinter.CTkLabel(master=frame, text="Autoplay", font=('arial',25)).pack(pady=12, padx=10)
+global rounds
+rounds = customtkinter.CTkEntry(master=frame, placeholder_text="Rounds to play")
+rounds.pack(pady=12, padx=10)
 
-button_positions = customtkinter.CTkButton(master=frame, text="pos", command=fu.print_mouse_position).pack(pady=12, padx=10)
-button_auto = customtkinter.CTkButton(master=frame, text="auto", command=fu.start_autopaly).pack(pady=12, padx=10)
-button_money = customtkinter.CTkButton(master=frame, text="money", command=fu.print_money).pack(pady=12, padx=10)
-button_screen = customtkinter.CTkButton(master=frame, text="screenshot", command=fu.take_screenshot).pack(pady=12, padx=10)
+button_auto = customtkinter.CTkButton(master=frame, text="auto", command=lambda: fu.start_autopaly(rounds.get())).pack(pady=12, padx=10)
 
+
+    
 root.mainloop()
+

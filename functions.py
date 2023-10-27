@@ -10,7 +10,7 @@ import cv2
 import bonus_image
 import maps
 
-
+rounds_to_play=0
 autoplay=True
 games_played = 0
 myconfig =r"--psm 8 --oem 3 "
@@ -18,8 +18,11 @@ myconfig =r"--psm 8 --oem 3 "
 #Image reader
 #myscreen.show()
 #Money reader
-def start_autopaly():
-    auto_select()
+def start_autopaly(rounds):
+    global rounds_to_play
+    if int(rounds) != 0:
+        rounds_to_play = int(rounds)-1
+        auto_select()
 def get_money():
     try:
         if selectedlr()==1:
@@ -264,7 +267,8 @@ def upgrade_select(x, y, index):
 
 def upgrade_time(index, numOfUpgrades):
     nou = 0
-    while (1 == 1):
+    warten=True
+    while warten:
         time.sleep(0.3)
         if pixelcheck(index):
             upgradepath = [Key.f1, Key.f2, Key.f3]
@@ -273,14 +277,16 @@ def upgrade_time(index, numOfUpgrades):
             nou = nou + 1
         if selected(0) == bool(False) and selected(1) == bool(False):
             print("Error: No Monkey selected!")
-            return
+            warten=False
+            
         if numOfUpgrades == nou:
             print(f"Upgraded Path:{index + 1} x{nou}.")
-            return
+            warten=False
         
 def upgrade_ability(index, numOfUpgrades, key):
     nou = 0
-    while (1 == 1):
+    warten=True
+    while warten:
         time.sleep(0.3)
         keyboard.press(key)
         wait(0.01)
@@ -292,10 +298,11 @@ def upgrade_ability(index, numOfUpgrades, key):
             nou = nou + 1
         if selected(0) == bool(False) and selected(1) == bool(False):
             print("Error: No Monkey selected!")
-            return
+            warten=False
+            
         if numOfUpgrades == nou:
             print(f"Upgraded Path:{index + 1} x{nou}.")
-            return
+            warten=False
 
 def lock_heli():
     wait(3)
@@ -305,7 +312,8 @@ def lock_heli():
 
 def upgrade_ability2(index, numOfUpgrades, key, key2):
     nou = 0
-    while (1 == 1):
+    warten=True
+    while warten:
         time.sleep(0.3)
         keyboard.press(key)
         wait(0.01)
@@ -321,10 +329,11 @@ def upgrade_ability2(index, numOfUpgrades, key, key2):
             nou = nou + 1
         if selected(0) == bool(False) and selected(1) == bool(False):
             print("Error: No Monkey selected!")
-            return
+            warten=False
+            
         if numOfUpgrades == nou:
             print(f"Upgraded Path:{index + 1} x{nou}.")
-            return
+            warten=False
 
 
 def replace_trap(x, y):
@@ -379,6 +388,7 @@ def start():
 
 def wait(sec):
     time.sleep(sec)
+    return
 
 
 
@@ -468,8 +478,10 @@ def take_screenshot():
     temp.save('TEMP.png')
     
 def finish_map():
+    global autoplay
     while autoplay:  
         if bonus_image.get_victory():
+            print("Map finished")
             pymoveclick(960, 900)
             wait(0.5)
             pymoveclick(717, 851)
@@ -477,7 +489,7 @@ def finish_map():
             if bonus_image.get_reward(): #reward
                 pymoveclick(962, 683)
                 wait(1.5)
-                for _ in range(10):
+                for _ in range(3):
                     pymoveclick(550, 550)
                     pymoveclick(650, 550)
                     pymoveclick(750, 550)
@@ -495,9 +507,11 @@ def finish_map():
             pymoveclick(833, 941)
             wait(1)
             pymoveclick(1339, 982)
-            if games_played <= 3: 
+            if games_played <= rounds_to_play: 
                 auto_select()
             else: 
+                print("----------finished----------")
+                autoplay=False
                 return
         wait(5)
     
