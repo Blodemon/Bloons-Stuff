@@ -357,7 +357,7 @@ def pymoveclick(x, y):
     pyautogui.click()
     
 def sell_truck():
-    wait(0.1)
+    wait(20)
     pymoveclick(900,700)
     pymoveclick(1010, 760)
     pymoveclick(891, 691)
