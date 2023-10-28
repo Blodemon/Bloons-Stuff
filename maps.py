@@ -303,6 +303,9 @@ def muddy_puddles():
     fu.place_cost(620, 900, 'j')
     fu.upgrade_time(0, 2)
     fu.upgrade_time(1, 5)
+    fu.place_cost(1287, 909, 'j')
+    fu.upgrade_time(0, 4)
+    fu.upgrade_time(1, 2)
     fu.finish_map()
 
 def ouch():

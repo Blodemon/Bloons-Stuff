@@ -55,8 +55,8 @@ rounds = customtkinter.CTkEntry(master=frame, placeholder_text="Rounds to play")
 rounds.pack(pady=12, padx=10)
 
 button_auto = customtkinter.CTkButton(master=frame, text="auto", command=lambda: fu.start_autopaly(rounds.get())).pack(pady=12, padx=10)
-
-
+position = customtkinter.CTkButton(master=frame, text="position", command=fu.print_mouse_position)
+position.pack(pady=12, padx=10)
     
 root.mainloop()
 
