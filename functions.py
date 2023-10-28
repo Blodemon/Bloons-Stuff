@@ -27,14 +27,14 @@ def get_money():
     try:
         if selectedlr()==1:
             screenshot = pyautogui.screenshot(region=(368, 24, 130, 40))
-            screenshot.save('pictures\screens.png')
+            screenshot.save('screens.png')
         else:
             if selectedlr()==0:
                 screenshot = pyautogui.screenshot(region=(758, 24, 130, 40))
-                screenshot.save('pictures\screens.png')
+                screenshot.save('screens.png')
             else:
                 return
-        myscreen = Image.open('pictures\screens.png')
+        myscreen = Image.open('screens.png')
         money=pytesseract.image_to_string(myscreen, config=myconfig)
         #print(re.sub('[^\d+]+',"", money))
         #print(int(re.sub('[^\d+]+',"", money)))
