@@ -82,9 +82,9 @@ def go():
                         print("NO")
 
 def get_reward():
-    if pyautogui.locateOnScreen('reward.png', confidence=0.9) != None:
+    if pyautogui.locateOnScreen('reward.png', confidence=0.8) != None:
         return True
     
 def get_victory():
-    if pyautogui.locateOnScreen('victory.png', confidence=0.9) != None:
+    if pyautogui.locateOnScreen('victory.png', confidence=0.8) != None:
         return True
