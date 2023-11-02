@@ -19,6 +19,8 @@ myconfig =r"--psm 8 --oem 3 "
 #myscreen.show()
 #Money reader
 def start_autopaly(rounds):
+    global autoplay
+    autoplay = True
     global rounds_to_play
     if int(rounds) != 0:
         rounds_to_play = int(rounds)-1

@@ -1,5 +1,13 @@
+3.3:
+- Muddy puddles to heli tec
+- hero prize in list(max hero prize for simple code)
 
-
+4.0
+- all expert maps on impoppable
+- use banana farms efficiently
+- add images for different events
+- if no event, add play mode for: play each map 1 time
+- use paragons if possible (just for fun)
 
 
 
